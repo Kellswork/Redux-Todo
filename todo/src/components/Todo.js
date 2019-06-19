@@ -5,7 +5,7 @@ function Todo(props) {
     return (
         <div>
            <input type='checkbox' id='todo' name='todo'/>
-           <p></p> 
+           <p>{props.todo}</p> 
         </div>
     )
 }
@@ -14,5 +14,5 @@ Todo.propTypes = {
 
 }
 
-export default Todo
+export default Todo;
 

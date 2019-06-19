@@ -1,25 +1,31 @@
-import { ADD_TODO, IS_TODO_COMPLETED } from './action';
+import { ADD_TODO, IS_COMPLETED } from './action';
+
+const dummyData = [
+    { todo: 'walk dog', completed: false },
+    { todo: 'sleep tonight', completed: false }
+]
 
 const initialState = {
-    todoList: [],
-    isCompleted: false,
+    todos: []
 }
 
 function reducer(state = initialState, action) {
-    if (action.type === ADD_TODO) {
-        return {
-            ...state,
-            todoList: [...state.todoList, action.payload]
-        }
+
+    switch (action.type) {
+        case ADD_TODO:
+            return {
+                ...state, todos: state.todos.concat(action.payload)
+            }
+        case IS_COMPLETED:
+            return state.map(todo => {
+                if (todo.id === action.payload) {
+                    return { ...todo, isTodoComplete: true }
+                } return null
+            })
+        default:
+            return state;
     }
 
-    if (action.type === IS_TODO_COMPLETED) {
-        return {
-            ...state,
-            isCompleted: state.isCompleted = !state.isCompleted
-
-        }
-    }
 }
 
 export default reducer;
