@@ -1,10 +1,5 @@
 import { ADD_TODO, IS_COMPLETED } from './action';
 
-const dummyData = [
-    { todo: 'walk dog', completed: false },
-    { todo: 'sleep tonight', completed: false }
-]
-
 const initialState = {
     todos: []
 }
@@ -17,11 +12,14 @@ function reducer(state = initialState, action) {
                 ...state, todos: state.todos.concat(action.payload)
             }
         case IS_COMPLETED:
-            return state.map(todo => {
+            const todos = state.todos.map(todo => {
                 if (todo.id === action.payload) {
-                    return { ...todo, isTodoComplete: true }
-                } return null
+                    return { ...todo, isComplete: !todo.isComplete }
+                } return todo
             })
+            return {
+                ...state, todos
+            }
         default:
             return state;
     }

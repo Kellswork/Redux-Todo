@@ -1,8 +1,8 @@
-import { ADD_TODO } from "./action";
+import { ADD_TODO, IS_COMPLETED } from "./action";
 import uuid from 'uuid';
 
 
-export default function addTodo(item) {
+function addTodo(item) {
     return {
         type: ADD_TODO,
        payload: {
@@ -12,3 +12,12 @@ export default function addTodo(item) {
        }
     }
 }
+
+function completed(id) {
+    return{
+        type: IS_COMPLETED,
+        payload: id,
+    }
+}
+
+export { addTodo, completed}

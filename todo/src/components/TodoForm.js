@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import addTodo from '../store/actionCreator';
+import {addTodo} from '../store/actionCreator';
 
 
 function TodoForm(props) {
@@ -10,6 +10,7 @@ function TodoForm(props) {
         props.addTodo(
             todoRef.current.value
         );
+        todoRef.current.value = '';
     }
 
     return (
